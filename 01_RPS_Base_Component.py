@@ -94,6 +94,8 @@ while end_game == "no":
                             choose_error)
 
     # get computer choice
+    comp_choice = random.choice(rps_list[:-1])
+    print("Comp Choice: ", comp_choice)
 
     # compare choices
 
