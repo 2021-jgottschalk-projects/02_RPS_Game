@@ -98,20 +98,23 @@ while end_game == "no":
 
     # compare choices
     if comp_choice == user_choice:
-        result = "It's a tie"
+        result = "tie"
     elif user_choice == "rock" and comp_choice == "scissors":
-        result = "You won!"
+        result = "won"
     elif user_choice == "paper" and comp_choice == "rock":
-        result = "You won!"
+        result = "won"
     elif user_choice == "scissors" and comp_choice == "paper":
-        result = "You won!"
+        result = "won"
     else:
-        result = "You lost (better luck next time)"
+        result = "lost"
+
+    if result == "tie":
+        feedback = "It's a tie"
+    else:
+        feedback = "{} vs {} - you {}".format(user_choice, comp_choice, result)
 
     # Output results...
-    print("You chose: {}".format(user_choice))
-    print("Computer chose: {}: ".format(comp_choice))
-    print(result)
+    print(feedback)
 
     # End game if exit code is typed
     if user_choice == "xxx":
