@@ -5,58 +5,30 @@ rounds_played = 0
 rounds_lost = 0
 rounds_drawn = 0
 
+# Results for testing purposes
+test_results = ["won", "won", "loss", "loss", "tie"]
+
 # Play Game
-end_game = "no"
-while end_game == "no":
+for item in test_results:
+    rounds_played += 1
+
     # Generate computer choice
-    comp_choice = random.choice(rps_list)
-    print()
-    print("Computer Choice: {}".format(comp_choice))
-    print()
 
-    # Get user choice
+    result = item
 
-    if rounds == "":
-        heading = "Continuous Mode: Round {}".format(rounds_played + 1)
-        print(heading)
-
-    else:
-        heading = "Round {} of {}".format(rounds_played + 1, rounds)
-        print(heading)
-
-        if rounds_played == rounds - 1:
-            end_game = "yes"
-
-    user_choice = check_choice("Please choose rock (r), paper (p) or scissors (s): ", rps_list)
-
-    if user_choice == "xxx":
-        break
-
-    rounds_played += 1  # This must be AFTER the break otherwise the rounds won calculation will be incorrect.
-
-
-    # Compare choices
-    if comp_choice == user_choice:
+    if result == "tie":
         result = "It's a tie"
         rounds_drawn += 1
-    elif user_choice == "rock" and comp_choice == "scissors":
-        result = "You won!"
-    elif user_choice == "paper" and comp_choice == "rock":
-        result = "You won!"
-    elif user_choice == "scissors" and comp_choice == "paper":
-        result = "You won!"
-    else:
-        result = "You lost"
+    elif result == "loss":
         rounds_lost += 1
 
-    result_statement = "User: {} \t|\t Computer: {} \t|\t Result: {}".format(user_choice, comp_choice, result)
-
-    # Output result
-    print(result_statement)
+# Quick Calculations (stats)
+rounds_won = rounds_played - rounds_lost - rounds_drawn
 
 # End of Game Statements
 print()
 print('***** End Game Summary *****')
-print("Won: {} \t|\t Lost: {} \t|\t Draw: {}".format(rounds_played-rounds_drawn-rounds_lost, rounds_lost, rounds_drawn))
+print("Won: {} \t|\t Lost: {} \t|\t Draw: "
+      "{}".format(rounds_won, rounds_lost, rounds_drawn))
 print()
 print("Thanks for playing")
