@@ -57,6 +57,9 @@ def choice_checker(question, valid_list, error):
 yes_no_list = ["yes", "no"]
 rps_list = ["rock", "paper", "scissors", "xxx"]
 
+# List to hold game summary
+game_summary = []
+
 # Ask user if they have played before.
 # If 'yes', show instructions
 
@@ -129,6 +132,10 @@ while end_game == "no":
 
     rounds_played += 1
 
+    # Put result in game history
+    round_result = "Round {}: {}".format(rounds_played, feedback)
+    game_summary.append(round_result)
+
     # end game if requested # of rounds has been played
     if rounds_played == rounds:
         break
@@ -140,10 +147,24 @@ while end_game == "no":
 # Quick Calculations (stats)
 rounds_won = rounds_played - rounds_lost - rounds_drawn
 
-# End of Game Statements
+# **** Calculate Game Stats ******
+percent_win = rounds_won / rounds_played * 100
+percent_lose = rounds_lost / rounds_played * 100
+percent_tie = rounds_drawn / rounds_played * 100
+
 print()
-print('***** End Game Summary *****')
-print("Won: {} \t|\t Lost: {} \t|\t Draw: "
-      "{}".format(rounds_won, rounds_lost, rounds_drawn))
+print("***** Game History *******")
+for game in game_summary:
+    print(game)
+
 print()
-print("Thanks for playing")
+
+# displays game stats with % values to the nearest whole number
+print("******* Game Statistics ********")
+print("Win: {}, ({:.0f}%)\nLoss: {}, "
+      "({:.0f}%)\nTie: {}, ({:.0f}%)".format(rounds_won,
+                                             percent_win,
+                                             rounds_lost,
+                                             percent_lose,
+                                             rounds_drawn,
+                                             percent_tie))
