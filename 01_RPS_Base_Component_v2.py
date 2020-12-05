@@ -78,6 +78,7 @@ def decorator(statement, decoration):
     print("{} {} {}".format(first_last, statement, first_last))
     return ""
 
+
 # Main routine goes here
 
 # Lists of valid responses
@@ -118,6 +119,7 @@ while end_game == "no":
 
     # Rounds Heading
     print()
+    print()
     if rounds == "":
         heading = "Continuous Mode: " \
                   "Round {}".format(rounds_played + 1)
@@ -125,7 +127,8 @@ while end_game == "no":
         heading = "Round {} of " \
                   "{}".format(rounds_played + 1, rounds)
 
-    print(heading)
+    decorator(heading, "===")
+
     choose_instruction = "Please choose rock, " \
                          "paper or scissors " \
                          "or 'xxx to exit: "
@@ -137,7 +140,10 @@ while end_game == "no":
                             choose_error)
 
     # End game if exit code is typed
-    if user_choice == "xxx":
+    if user_choice == "xxx" and len(game_summary) == 0:
+        print("You need to play at least one round")
+        continue
+    elif user_choice == "xxx":
         break
 
     # get computer choice
