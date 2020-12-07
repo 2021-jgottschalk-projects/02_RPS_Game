@@ -201,10 +201,22 @@ percent_win = rounds_won / rounds_played * 100
 percent_lose = rounds_lost / rounds_played * 100
 percent_tie = rounds_drawn / rounds_played * 100
 
-print()
-print("***** Game History *******")
-for game in game_summary:
-    print(game)
+# Set print summary to yes so short summaries always print
+print_summary = "yes"
+
+# if user has played more than 10 rounds
+# ask if they want to see the summary
+if len(game_summary) > 10:
+    print_summary = choice_checker("\nYour game history has more than 10 rounds.  "
+                                   "Would you like to see it? ", yes_no_list,
+                                   "Please enter yes / no for this question.")
+
+
+if print_summary == "yes":
+    print()
+    print("***** Game History *******")
+    for game in game_summary:
+        print(game)
 
 print()
 
